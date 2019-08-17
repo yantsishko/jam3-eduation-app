@@ -11,9 +11,12 @@ import {
 
 import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
+import Profile from '../pages/Profile';
+import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
 import CardList from '../CardList/index';
+
 class App extends Component {
 
   constructor({ fnIsMobileCheck }) {
@@ -40,6 +43,8 @@ class App extends Component {
           <Route exact path="/itemList" component={CardList} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/addMaterial" component={AddMaterial} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
