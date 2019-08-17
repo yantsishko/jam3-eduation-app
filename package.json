@@ -135,6 +135,7 @@
     "compression": "1.6.2",
     "copy-webpack-plugin": "^4.2.3",
     "cross-env": "5.0.0",
+    "downshift": "^3.2.12",
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
     "git-revision-webpack-plugin": "^2.5.1",

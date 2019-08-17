@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import Quill from 'quill';
-import Header from '../../../components/header';
+import TextField from '@material-ui/core/TextField';
 
-export default class AddMaterial extends Component {
+import Header from '../../../components/header';
+import TagsSelector from '../../../components/TagsSelector';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import { addNewMaterial } from './../../../actions/materials';
+
+import s from './styles.less';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+
+class AddMaterial extends Component {
   constructor() {
     super();
-    this.state = { text: '' }
+    this.state = {
+      title: '',
+      difficulty: 'ELEMENTARY',
+      topic: [],
+    };
   }
 
-  handleChange = (value) =>  {
-    this.setState({ text: value })
+  handleChange = (e) =>  {
+    this.setState({ title: e.target.value })
   };
 
   componentDidMount() {
@@ -32,15 +49,31 @@ export default class AddMaterial extends Component {
     const container = document.getElementById('editor');
     const customHtml = container.querySelector('.ql-editor').innerHTML;
 
-    console.log(customHtml);
+    console.log({
+      title: this.state.title,
+      description: customHtml,
+      difficulty: this.state.difficulty,
+      topic: this.state.topic,
+    });
 
-    // await saveAgreement(+localStorage.getItem('user'), {
-    //   customHtml: customHtml,
-    //   pathToPdf: '',
-    //   participantName: this.state.participantName,
-    // });
+    await addNewMaterial({
+      title: this.state.title,
+      description: customHtml,
+      difficulty: 'INTERMEDIATE',
+      tags: this.state.topic,
+    });
+  };
 
-    // this.props.history.push(`/`);
+  handleChangeSelect = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  onSelect = (data) => {
+    this.setState({
+      topic: data,
+    });
   };
 
   render() {
@@ -55,7 +88,49 @@ export default class AddMaterial extends Component {
           </div>
           <div className="row">
             <div className="col-sm">
+              <TextField
+                label="Заголовок"
+                defaultValue=""
+                className={s.input}
+                margin="normal"
+                onChange={this.handleChange}
+                value={this.state.title}
+              />
+            </div>
+          </div>
+          <div className="row" className={s.form}>
+            <div className="col-sm">
+              <FormControl>
+                <InputLabel htmlFor="age-simple">Сложность</InputLabel>
+                <Select
+                  value={this.state.difficulty}
+                  onChange={this.handleChangeSelect}
+                  inputProps={{
+                    name: 'difficulty',
+                    id: 'age-simple',
+                  }}
+                >
+                  <MenuItem value={'ELEMENTARY'}>Элементарный</MenuItem>
+                  <MenuItem value={'INTERMEDIATE'}>Средний</MenuItem>
+                  <MenuItem value={'ADVANCED'}>Повышенный</MenuItem>
+                  <MenuItem value={'PROFICIENT'}>Профессионал</MenuItem>
+                  <MenuItem value={'UNBELIEVABLE'}>Эксперт</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm">
               <div id="editor" style={{ minHeight: '200px'}} />
+            </div>
+          </div>
+          <div className="row" >
+            <div className="col-sm">
+              <TagsSelector onSelect={this.onSelect} />
+            </div>
+          </div>
+          <div className="row" >
+            <div className="col-sm">
               <div style={ { display: 'flex', justifyContent: 'space-between' }} className="mt-2">
                 <button className="btn btn-primary" onClick={ this.handleSubmit }>Опубликовать</button>
               </div>
@@ -66,3 +141,12 @@ export default class AddMaterial extends Component {
     )
   }
 }
+
+const withConnect = connect((state) => ({
+  tags: state.get('materials'),
+}), {
+});
+
+export default withRouter(compose(
+  withConnect,
+)(AddMaterial));
