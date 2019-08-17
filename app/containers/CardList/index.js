@@ -1,16 +1,20 @@
-import React, { cloneElement } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Card from "../Card";
 
-const CardList = () => {
+const CardList = ({ list }) => {
   const useStyles = makeStyles(theme => ({
     card: {},
     demo: {
-      display: 'block',
-      width: '50%',
-      margin: 'auto',
+      display: "block",
+      width: "100%",
+      margin: "auto"
+    },
+    list: {
+      display: "flex",
+      alignContent: "center"
     },
     title: {
       textAlign: "center",
@@ -20,30 +24,6 @@ const CardList = () => {
 
   const classes = useStyles();
 
-  const list = [
-    {
-      title: "Title",
-      text: "Some text about math",
-      tag: "math",
-      status: false,
-      id: 2312323
-    },
-    {
-      title: "Title",
-      text: "Some text about math",
-      tag: "math",
-      status: true,
-      id: 233332
-    },
-    {
-      title: "Title",
-      text: "Some text about math",
-      tag: "math",
-      status: true,
-      id: 223132130,
-    }
-  ];
-
   return (
     <div className={classes.list}>
       <Typography variant="h6" className={classes.title}>
@@ -52,7 +32,7 @@ const CardList = () => {
       <div className={classes.demo}>
         <List>
           {list.map(({ title, tag, text, status, id }) => (
-            <Card title={title} tag={tag} text={text} status={status} id={id}/>
+            <Card title={title} tag={tag} text={text} status={status} id={id} />
           ))}
         </List>
       </div>

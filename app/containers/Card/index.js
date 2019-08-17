@@ -14,6 +14,7 @@ const ItemCard = ({ title, text, status, tag, id, history }) => {
   const useStyles = makeStyles({
     card: {
       width: "100%",
+      maxWindth: '500px',
       margin: "5px 0"
     },
     cardInner: {
