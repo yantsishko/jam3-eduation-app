@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { addNewMaterial } from './../../../actions/materials';
+import { addNewMaterial, getTags } from './../../../actions/materials';
 
 import s from './styles.less';
 import { connect } from 'react-redux';
@@ -30,6 +30,7 @@ class AddMaterial extends Component {
   };
 
   componentDidMount() {
+    this.props.getTags();
     this.quill = new Quill(document.getElementById('editor'), {
       modules: {
         toolbar: [
@@ -145,6 +146,7 @@ class AddMaterial extends Component {
 const withConnect = connect((state) => ({
   tags: state.get('materials'),
 }), {
+  getTags,
 });
 
 export default withRouter(compose(

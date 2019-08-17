@@ -28,14 +28,14 @@ export async function getAllMaterials() {
     }
   ];
 
-  await (await fetch('https://ejam3.acarica.com/api/task/all', {
+  const tasks = await (await fetch('https://ejam3.acarica.com/api/task/all', {
     method: 'GET',
   })).json();
 
   return (dispatch) => {
     dispatch({
       type: GET_ALL_MATERIALS,
-      data: list,
+      data: tasks,
     });
   };
 }
@@ -57,30 +57,29 @@ export async function addNewMaterial(data) {
   };
 }
 
-export const getUserList = (data) => ((dispatch) => 
+export const getUserList = (data) => ((dispatch) =>
   dispatch({
     type: GET_USER_LIST,
     data,
   }))
 
-export const getMaterialById = (id) => ((dispatch) => 
+export const getMaterialById = (id) => ((dispatch) =>
 dispatch({
   type: GET_MATERIAL_BY_ID,
   data: id,
 }))
 
 export async function getTags() {
-  let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all', {
-    method: 'GET',
-  })).json();
-
-  // tags = tags.map(i => { name: i });
-  console.log(tags);
   // post to save data
-  return (dispatch) => {
+  return async (dispatch) => {
+    let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all')).json();
+
+    // tags = tags.map(i => { name: i });
+    console.log(tags);
+
     dispatch({
       type: GET_TAGS,
-      data: list,
+      data: tags,
     });
   };
 }

@@ -24,13 +24,11 @@ class App extends Component {
     super();
 
     this.state = {
-      load: false,
+      loaded: false,
     };
-
-    this.load();
   }
 
-  load = async() => {
+  async componentDidMount() {
     const userId = localStorage.getItem('userId');
 
     if (!userId) {
@@ -40,14 +38,18 @@ class App extends Component {
       await (await fetch('https://ejam3.acarica.com/api/login', {
         method: 'POST',
         body: formData,
-      })).json().then(() => this.props.getTags());
+      })).json();
     }
-  };
+
+    this.setState({
+      loaded: true,
+    });
+  }
 
   render() {
     const canonical = window.location.href.toLowerCase();
 
-    return (
+    return this.state.loaded && (
       <div>
         <Helmet>
           <meta name={'viewport'} content={'width=device-width, initial-scale=1'} />
