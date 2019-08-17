@@ -14,8 +14,9 @@ const ItemCard = ({ title, text, author, status, tag, id, history, showAuthor })
   const useStyles = makeStyles({
     card: {
       width: "100%",
-      maxWindth: '500px',
-      margin: "5px 0"
+      maxWidth: '500px',
+      margin: "5px 0",
+      display: 'inline-block',
     },
     cardInner: {
       padding: "8px"
@@ -30,7 +31,7 @@ const ItemCard = ({ title, text, author, status, tag, id, history, showAuthor })
 
   return (
     <Card className={classes.card} onClick={openCard}>
-      <CardActionArea className={classes.cardInner}>
+      <CardActionArea className={classes.cardInner} style={{display: 'flex'}}>
         <CardContent>
           <div className={st.cardHeader}>
             <Typography gutterBottom variant="h5" component="h2">
