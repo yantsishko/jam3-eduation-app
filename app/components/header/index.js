@@ -132,6 +132,43 @@ export default function PrimarySearchAppBar(props) {
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem onClick={handleMenuAddMaterial}>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <AddIcon />
+        </IconButton>
+        <p>Добавить материал</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+          <Badge badgeContent={11} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Нотификации</p>
+      </MenuItem>
+      <MenuItem onClick={handleMenuProfile}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Профиль</p>
+      </MenuItem>
+    </Menu>
+  );
 
   return (
     <div className={classes.grow}>
@@ -189,6 +226,7 @@ export default function PrimarySearchAppBar(props) {
           </div>
         </Toolbar>
       </AppBar>
+      {renderMobileMenu}
       {renderMenu}
     </div>
   );
