@@ -1,11 +1,9 @@
 import React, { cloneElement } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
 import Card from "../Card";
-import Header from '../../components/header';
 
-const CardList = (props) => {
+const CardList = () => {
   const useStyles = makeStyles(theme => ({
     card: {},
     demo: {
@@ -13,10 +11,6 @@ const CardList = (props) => {
       width: '50%',
       margin: 'auto',
     },
-    title: {
-      textAlign: "center",
-      margin: theme.spacing(4, 0, 2)
-    }
   }));
 
   const classes = useStyles();
@@ -47,11 +41,7 @@ const CardList = (props) => {
 
   return (
     <div>
-      <Header history={props.history} />
       <div className={classes.list}>
-        <Typography variant="h6" className={classes.title}>
-          List Item
-        </Typography>
         <div className={classes.demo}>
           <List>
             {list.map(({ title, tag, text, status, id }) => (

@@ -104,7 +104,7 @@ export default function PrimarySearchAppBar(props) {
   }
 
   function handleMenuMyList() {
-    props.history.push('/itemList');
+    props.history.push('/userMaterials');
   }
 
   function handleMenuAddMaterial() {
@@ -116,21 +116,21 @@ export default function PrimarySearchAppBar(props) {
   }
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuProfile}>Профиль</MenuItem>
-      <MenuItem onClick={handleMenuMyList}>Мои материалы</MenuItem>
-      <MenuItem onClick={handleMenuAddMaterial}>Добавить материал</MenuItem>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuProfile}>Профиль</MenuItem>
+  //     <MenuItem onClick={handleMenuMyList}>Мои материалы</MenuItem>
+  //     <MenuItem onClick={handleMenuAddMaterial}>Добавить материал</MenuItem>
+  //   </Menu>
+  // );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -219,7 +219,7 @@ export default function PrimarySearchAppBar(props) {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleMenuProfile}
               color="inherit"
             >
               <AccountCircle />
@@ -239,7 +239,7 @@ export default function PrimarySearchAppBar(props) {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/*{renderMenu}*/}
     </div>
   );
 }
