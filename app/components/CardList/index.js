@@ -34,4 +34,8 @@ const CardList = ({ list, showAuthor }) => {
   );
 };
 
+CardList.defaultProps = {
+  list: [],
+};
+
 export default CardList;
