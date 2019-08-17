@@ -24,7 +24,7 @@ const CardList = ({ list, showAuthor }) => {
         <div className={classes.demo}>
           <List className={classes.list}>
             {list.map(({ title, tag, text, status, id, author }) => (
-              <Card key={id} title={title} tag={tag} text={text} status={status} author={author} showAuthor={showAuthor}/>
+              <Card key={id} id={id} title={title} tag={tag} text={text} status={status} author={author} showAuthor={showAuthor}/>
             ))}
           </List>
         </div>

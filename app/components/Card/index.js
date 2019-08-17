@@ -26,7 +26,7 @@ const ItemCard = ({ title, text, author, status, tag, id, history, showAuthor })
   const classes = useStyles();
 
   const openCard = () => {
-    history.push(`/card/:${id}`)
+    history.push(`/materials/${id}`)
   };
 
   return (

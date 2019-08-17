@@ -16,6 +16,7 @@ import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
 import UserMaterials from './../pages/UserMaterials';
+import MaterialInfo from '../MaterialInfo'
 
 class App extends Component {
 
@@ -39,6 +40,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/userMaterials" component={UserMaterials} />
+          <Route exact path="/materials/:id" component={MaterialInfo} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />

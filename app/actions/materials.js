@@ -1,4 +1,4 @@
-import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL } from '../constants';
+import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_USER_LIST, GET_MATERIAL_BY_ID } from '../constants';
 
 export function getAllMaterials() {
   const list = [
@@ -46,3 +46,14 @@ export function addNewMaterial(data) {
   };
 }
 
+export const getUserList = (data) => ((dispatch) => 
+  dispatch({
+    type: GET_USER_LIST,
+    data,
+  }))
+
+export const getMaterialById = (id) => ((dispatch) => 
+dispatch({
+  type: GET_MATERIAL_BY_ID,
+  data: id,
+}))
