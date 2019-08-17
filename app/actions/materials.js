@@ -31,6 +31,7 @@ export function getAllMaterials() {
   return async (dispatch) => {
     const tasks = await (await fetch('https://ejam3.acarica.com/api/task/all', {
       method: 'GET',
+      credentials: 'include'
     })).json();
     dispatch({
       type: GET_ALL_MATERIALS,
@@ -42,12 +43,13 @@ export function getAllMaterials() {
 export function addNewMaterial(data) {
   // post to save data
   return async (dispatch) => {
-    await (await fetch('https://ejam3.acarica.com/api/save', {
+    await (await fetch('https://ejam3.acarica.com/api/task/save', {
       method: 'POST',
       body: JSON.stringify(data),
-      // headers:{
-      //   'Content-Type': 'application/json'
-      // }
+      credentials: 'include',
+      headers:{
+        'Content-Type': 'application/json'
+      }
     })).json();
     dispatch({
       type: ADD_NEW_MATERIAL,
@@ -71,7 +73,9 @@ dispatch({
 export function getTags() {
   // post to save data
   return async (dispatch) => {
-    let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all')).json();
+    let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all', {
+      credentials: 'include'
+    })).json();
 
     tags = tags.map(i => ({name: i}));
 

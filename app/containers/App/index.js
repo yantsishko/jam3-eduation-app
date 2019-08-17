@@ -34,6 +34,7 @@ class App extends Component {
       await (await fetch('https://ejam3.acarica.com/api/login', {
         method: 'POST',
         body: formData,
+        credentials: 'include',
       })).json();
     }
     console.log('1111');

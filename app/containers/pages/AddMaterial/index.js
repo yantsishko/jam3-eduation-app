@@ -58,7 +58,7 @@ class AddMaterial extends Component {
       topic: this.state.topic,
     });
 
-    await addNewMaterial({
+    await this.props.addNewMaterial({
       title: this.state.title,
       description: customHtml,
       difficulty: 'INTERMEDIATE',
@@ -148,6 +148,7 @@ const withConnect = connect((state) => ({
   materials: state.get('materials'),
 }), {
   getTags,
+  addNewMaterial,
 });
 
 export default withRouter(compose(
