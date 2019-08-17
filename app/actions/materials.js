@@ -57,7 +57,6 @@ export async function addNewMaterial(data) {
   };
 }
 
-<<<<<<< HEAD
 export const getUserList = (data) => ((dispatch) => 
   dispatch({
     type: GET_USER_LIST,
@@ -69,7 +68,7 @@ dispatch({
   type: GET_MATERIAL_BY_ID,
   data: id,
 }))
-=======
+
 export async function getTags() {
   let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all', {
     method: 'GET',
@@ -85,7 +84,3 @@ export async function getTags() {
     });
   };
 }
-
-
-
->>>>>>> 23ebaf31f0edd8a33e42646047ca28fde6595601
