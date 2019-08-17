@@ -30,6 +30,7 @@ class AddMaterial extends Component {
   };
 
   componentDidMount() {
+    console.log('2222');
     this.props.getTags();
     this.quill = new Quill(document.getElementById('editor'), {
       modules: {
@@ -127,7 +128,7 @@ class AddMaterial extends Component {
           </div>
           <div className="row" >
             <div className="col-sm">
-              <TagsSelector onSelect={this.onSelect} />
+              <TagsSelector onSelect={this.onSelect} tags={this.props.tags} />
             </div>
           </div>
           <div className="row" >

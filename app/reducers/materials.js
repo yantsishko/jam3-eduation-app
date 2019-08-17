@@ -2,6 +2,7 @@ import {
   GET_ALL_MATERIALS,
   GET_USER_LIST,
   GET_MATERIAL_BY_ID,
+  GET_TAGS,
 } from '../constants';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
     id: '12313123',
     showAuthor: false,
   }],
+  tags: [],
 };
 
 export default (state = initialState, action) => {
@@ -24,12 +26,17 @@ export default (state = initialState, action) => {
         ...state,
         list: action.data,
       };
+    case GET_TAGS:
+      return {
+        ...state,
+        tags: action.data,
+      };
     case GET_USER_LIST:
       return {
         ...state,
         cardList: action.data
       };
-    case GET_MATERIAL_BY_ID: 
+    case GET_MATERIAL_BY_ID:
       return {
         ...state,
         material: action.data

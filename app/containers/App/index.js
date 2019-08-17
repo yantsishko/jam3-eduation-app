@@ -5,10 +5,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import {
-  getTags,
-} from '../../actions/materials';
-
 import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
 import Profile from '../pages/Profile';
@@ -40,7 +36,7 @@ class App extends Component {
         body: formData,
       })).json();
     }
-
+    console.log('1111');
     this.setState({
       loaded: true,
     });
@@ -71,12 +67,10 @@ class App extends Component {
 }
 
 App.propTypes = {
-  getTags: PropTypes.func.isRequired,
 };
 
 const withConnect = connect(() => ({
 }), {
-  getTags,
 });
 
 export default withRouter(compose(

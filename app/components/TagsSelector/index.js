@@ -8,25 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import MenuItem from '@material-ui/core/MenuItem';
 import Chip from '@material-ui/core/Chip';
 
-const suggestions = [
-  {
-    id: 1,
-    name: 'Математика',
-  },
-  {
-    id: 2,
-    name: 'Физика',
-  },
-  {
-    id: 3,
-    name: 'Русский язык',
-  },
-  {
-    id: 4,
-    name: 'Астрономия',
-  },
-];
-
 function renderInput(inputProps) {
   const { InputProps, classes, ref, ...other } = inputProps;
 
@@ -83,7 +64,7 @@ renderSuggestion.propTypes = {
   }).isRequired,
 };
 
-function getSuggestions(value, { showEmpty = false } = {}) {
+function getSuggestions(suggestions, value, { showEmpty = false } = {}) {
   const inputValue = deburr(value.trim()).toLowerCase();
   const inputLength = inputValue.length;
   let count = 0;
@@ -183,7 +164,7 @@ function DownshiftMultiple(props) {
 
             {isOpen ? (
               <Paper className={classes.paper} square>
-                {getSuggestions(inputValue2).map((suggestion, index) =>
+                {getSuggestions(props.tags, inputValue2).map((suggestion, index) =>
                   renderSuggestion({
                     suggestion,
                     index,
@@ -241,7 +222,7 @@ export default function IntegrationDownshift(props) {
 
   return (
     <div className={classes.root}>
-      <DownshiftMultiple classes={classes} onSelect={props.onSelect} />
+      <DownshiftMultiple classes={classes} onSelect={props.onSelect} tags={props.tags} />
     </div>
   );
 }
