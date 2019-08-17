@@ -131,6 +131,7 @@
     "child_process": "^1.0.2",
     "circular-dependency-plugin": "3.0.0",
     "classnames": "^2.2.5",
+    "commentbox.io": "^2.0.0",
     "compression": "1.6.2",
     "copy-webpack-plugin": "^4.2.3",
     "cross-env": "5.0.0",
