@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
-import "./style.less";
+import st from "./style.less";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -29,16 +29,16 @@ const Login = () => {
   }
 
   return (
-    <div className="main-container">
+    <div className={st.mainContainer}>
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
           id="outlined-name"
-          label="Name"
+          label="Username"
           className={classes.textField}
           value={state.name}
           onChange={({ target }) => setState({ ...state, name: target.value })}
           margin="normal"
-          placeholder = 'name'
+          placeholder = 'Username'
           variant="outlined"
         />
 
@@ -48,6 +48,7 @@ const Login = () => {
           className={state.password}
           type="password"
           autoComplete="current-password"
+          placeholder = 'Password'
           margin="normal"
           onChange={({ target }) => setState({ ...state, password: target.value })}
           variant="outlined"
