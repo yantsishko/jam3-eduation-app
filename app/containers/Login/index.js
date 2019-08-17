@@ -10,7 +10,7 @@ const Login = () => {
     name: "",
     password: ""
   });
-  
+
   const useStyles = makeStyles(theme => ({
     button: {
       margin: theme.spacing(1)
@@ -24,10 +24,6 @@ const Login = () => {
 
   const classes = useStyles();
 
-  const signUp = () => {
-    console.log('WORK!')
-  }
-
   return (
     <div className={st.mainContainer}>
       <form className={classes.container} noValidate autoComplete="off">
@@ -38,7 +34,7 @@ const Login = () => {
           value={state.name}
           onChange={({ target }) => setState({ ...state, name: target.value })}
           margin="normal"
-          placeholder = 'Username'
+          placeholder="Username"
           variant="outlined"
         />
 
@@ -48,17 +44,25 @@ const Login = () => {
           className={state.password}
           type="password"
           autoComplete="current-password"
-          placeholder = 'Password'
+          placeholder="Password"
           margin="normal"
-          onChange={({ target }) => setState({ ...state, password: target.value })}
+          onChange={({ target }) =>
+            setState({ ...state, password: target.value })
+          }
           variant="outlined"
           required
         />
 
-        <Button variant="contained" color="primary" className={classes.button} onClick={signUp}>
-          Sing Up
-        </Button>
-
+        <Link to="/">
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={signUp}
+          >
+            Sing Up
+          </Button>
+        </Link>
       </form>
     </div>
   );
