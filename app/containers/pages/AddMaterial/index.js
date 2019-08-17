@@ -128,7 +128,7 @@ class AddMaterial extends Component {
           </div>
           <div className="row" >
             <div className="col-sm">
-              <TagsSelector onSelect={this.onSelect} tags={this.props.tags} />
+              <TagsSelector onSelect={this.onSelect} tags={this.props.materials.tags} />
             </div>
           </div>
           <div className="row" >
@@ -145,7 +145,7 @@ class AddMaterial extends Component {
 }
 
 const withConnect = connect((state) => ({
-  tags: state.get('materials'),
+  materials: state.get('materials'),
 }), {
   getTags,
 });
