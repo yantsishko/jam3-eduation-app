@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
+import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
@@ -103,7 +104,7 @@ export default function PrimarySearchAppBar(props) {
   }
 
   function handleMenuMyList() {
-    props.history.push('/list');
+    props.history.push('/itemList');
   }
 
   function handleMenuAddMaterial() {
@@ -147,6 +148,12 @@ export default function PrimarySearchAppBar(props) {
           <AddIcon />
         </IconButton>
         <p>Добавить материал</p>
+      </MenuItem>
+      <MenuItem onClick={handleMenuMyList}>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <AddIcon />
+        </IconButton>
+        <p>Мои материалы</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -195,6 +202,11 @@ export default function PrimarySearchAppBar(props) {
             <IconButton color="inherit">
               <AddIcon
                 onClick={handleMenuAddMaterial}
+              />
+            </IconButton>
+            <IconButton color="inherit">
+              <ListIcon
+                onClick={handleMenuMyList}
               />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">

@@ -3,8 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Card from "../Card";
+import Header from '../../components/header';
 
-const CardList = () => {
+const CardList = (props) => {
   const useStyles = makeStyles(theme => ({
     card: {},
     demo: {
@@ -45,16 +46,19 @@ const CardList = () => {
   ];
 
   return (
-    <div className={classes.list}>
-      <Typography variant="h6" className={classes.title}>
-        List Item
-      </Typography>
-      <div className={classes.demo}>
-        <List>
-          {list.map(({ title, tag, text, status, id }) => (
-            <Card title={title} tag={tag} text={text} status={status} id={id}/>
-          ))}
-        </List>
+    <div>
+      <Header history={props.history} />
+      <div className={classes.list}>
+        <Typography variant="h6" className={classes.title}>
+          List Item
+        </Typography>
+        <div className={classes.demo}>
+          <List>
+            {list.map(({ title, tag, text, status, id }) => (
+              <Card title={title} tag={tag} text={text} status={status} id={id}/>
+            ))}
+          </List>
+        </div>
       </div>
     </div>
   );
