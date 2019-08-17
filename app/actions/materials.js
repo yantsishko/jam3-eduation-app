@@ -1,4 +1,4 @@
-import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_TAGS } from '../constants';
+import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_USER_LIST, GET_MATERIAL_BY_ID, GET_TAGS } from '../constants';
 
 export async function getAllMaterials() {
   const list = [
@@ -57,6 +57,19 @@ export async function addNewMaterial(data) {
   };
 }
 
+<<<<<<< HEAD
+export const getUserList = (data) => ((dispatch) => 
+  dispatch({
+    type: GET_USER_LIST,
+    data,
+  }))
+
+export const getMaterialById = (id) => ((dispatch) => 
+dispatch({
+  type: GET_MATERIAL_BY_ID,
+  data: id,
+}))
+=======
 export async function getTags() {
   let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all', {
     method: 'GET',
@@ -75,3 +88,4 @@ export async function getTags() {
 
 
 
+>>>>>>> 23ebaf31f0edd8a33e42646047ca28fde6595601
