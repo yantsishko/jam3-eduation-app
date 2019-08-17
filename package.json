@@ -123,6 +123,7 @@
     ]
   },
   "dependencies": {
+    "@material-ui/core": "^4.3.2",
     "add-asset-html-webpack-plugin": "2.0.1",
     "animate.css": "^3.6.1",
     "babel-polyfill": "6.23.0",
@@ -154,8 +155,8 @@
     "progress-bar-webpack-plugin": "^1.11.0",
     "prop-types": "15.5.10",
     "qs": "^6.5.1",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-ga": "^2.4.1",
     "react-helmet": "^5.2.0",
     "react-rangeslider": "^2.2.0",

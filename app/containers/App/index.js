@@ -9,6 +9,7 @@ import {
   isMobileCheck,
 } from '../../actions/user';
 
+import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
@@ -34,6 +35,7 @@ class App extends Component {
           <link rel="canonical" href={canonical} />
         </Helmet>
         <Switch>
+          <Route exact path="/login" component={Login} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route component={NotFoundPage} />
