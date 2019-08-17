@@ -13,6 +13,7 @@ import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
+import CardList from '../CardList/index';
 class App extends Component {
 
   constructor({ fnIsMobileCheck }) {
@@ -36,6 +37,7 @@ class App extends Component {
         </Helmet>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/itemList" component={CardList} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route component={NotFoundPage} />
