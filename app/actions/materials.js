@@ -1,6 +1,6 @@
-import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_USER_LIST, GET_MATERIAL_BY_ID } from '../constants';
+import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_USER_LIST, GET_MATERIAL_BY_ID, GET_TAGS } from '../constants';
 
-export function getAllMaterials() {
+export async function getAllMaterials() {
   const list = [
     {
       title: "Title",
@@ -28,6 +28,10 @@ export function getAllMaterials() {
     }
   ];
 
+  await (await fetch('https://ejam3.acarica.com/api/task/all', {
+    method: 'GET',
+  })).json();
+
   return (dispatch) => {
     dispatch({
       type: GET_ALL_MATERIALS,
@@ -36,7 +40,14 @@ export function getAllMaterials() {
   };
 }
 
-export function addNewMaterial(data) {
+export async function addNewMaterial(data) {
+  await (await fetch('https://ejam3.acarica.com/api/save', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    // headers:{
+    //   'Content-Type': 'application/json'
+    // }
+  })).json();
   // post to save data
   return (dispatch) => {
     dispatch({
@@ -46,6 +57,7 @@ export function addNewMaterial(data) {
   };
 }
 
+<<<<<<< HEAD
 export const getUserList = (data) => ((dispatch) => 
   dispatch({
     type: GET_USER_LIST,
@@ -57,3 +69,23 @@ dispatch({
   type: GET_MATERIAL_BY_ID,
   data: id,
 }))
+=======
+export async function getTags() {
+  let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all', {
+    method: 'GET',
+  })).json();
+
+  // tags = tags.map(i => { name: i });
+  console.log(tags);
+  // post to save data
+  return (dispatch) => {
+    dispatch({
+      type: GET_TAGS,
+      data: list,
+    });
+  };
+}
+
+
+
+>>>>>>> 23ebaf31f0edd8a33e42646047ca28fde6595601

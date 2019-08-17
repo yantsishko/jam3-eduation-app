@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import {
-  isMobileCheck,
-} from '../../actions/user';
+  getTags,
+} from '../../actions/materials';
 
 import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
@@ -26,7 +26,23 @@ class App extends Component {
     this.state = {
       load: false,
     };
+
+    this.load();
   }
+
+  load = async() => {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+      let formData = new FormData();
+      formData.append('username', 'norris');
+      formData.append('password', 'qwerty');
+      await (await fetch('https://ejam3.acarica.com/api/login', {
+        method: 'POST',
+        body: formData,
+      })).json().then(() => this.props.getTags());
+    }
+  };
 
   render() {
     const canonical = window.location.href.toLowerCase();
@@ -53,12 +69,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  fnIsMobileCheck: PropTypes.func.isRequired,
+  getTags: PropTypes.func.isRequired,
 };
 
 const withConnect = connect(() => ({
 }), {
-  fnIsMobileCheck: isMobileCheck,
+  getTags,
 });
 
 export default withRouter(compose(
