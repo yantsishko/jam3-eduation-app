@@ -5,7 +5,6 @@ import Card from "../Card";
 
 const CardList = ({ list, showAuthor }) => {
   const useStyles = makeStyles(theme => ({
-    card: {},
     demo: {
       display: "block",
       width: "100%",
@@ -13,7 +12,7 @@ const CardList = ({ list, showAuthor }) => {
     },
     list: {
       display: "flex",
-      alignContent: "center"
+      justifyContent: 'center'
     }
   }));
 
@@ -23,7 +22,7 @@ const CardList = ({ list, showAuthor }) => {
     <div>
       <div className={classes.list}>
         <div className={classes.demo}>
-          <List>
+          <List className={classes.list}>
             {list.map(({ title, tag, text, status, id, author }) => (
               <Card key={id} title={title} tag={tag} text={text} status={status} author={author} showAuthor={showAuthor}/>
             ))}
