@@ -1,0 +1,20 @@
+User-agent: Yandex
+Disallow: /*?
+Disallow:/signup/*
+Disallow:/settings/*
+Disallow:/analytics/*
+
+User-agent: Googlebot
+Disallow: /*?
+Disallow:/signup/*
+Disallow:/settings/*
+Disallow:/analytics/*
+
+User-agent: *
+Disallow: /*?
+Disallow:/signup/*
+Disallow:/settings/*
+Disallow:/analytics/*
+
+Host: https://beeline.tv
+Sitemap: https://beeline.tv/sitemap.xml
