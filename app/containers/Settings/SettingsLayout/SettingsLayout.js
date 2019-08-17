@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import classnames from 'classnames';
 import SettingsContent from './SettingsContent/SettingsContent';
 import Footer from './../../../components/footer/footer';
-import Header from './../../../components/header/header';
+import Header from './../../../components/header';
 
 import s from './style.less';
 
