@@ -15,6 +15,7 @@ import Profile from '../pages/Profile';
 import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
+import CardList from '../CardList/index';
 
 class App extends Component {
 
@@ -39,6 +40,7 @@ class App extends Component {
         </Helmet>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/itemList" component={CardList} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />
