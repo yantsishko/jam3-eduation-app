@@ -11,6 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
+import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
@@ -103,7 +104,7 @@ export default function PrimarySearchAppBar(props) {
   }
 
   function handleMenuMyList() {
-    props.history.push('/list');
+    props.history.push('/userMaterials');
   }
 
   function handleMenuAddMaterial() {
@@ -115,21 +116,21 @@ export default function PrimarySearchAppBar(props) {
   }
 
   const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuProfile}>Профиль</MenuItem>
-      <MenuItem onClick={handleMenuMyList}>Мои материалы</MenuItem>
-      <MenuItem onClick={handleMenuAddMaterial}>Добавить материал</MenuItem>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuProfile}>Профиль</MenuItem>
+  //     <MenuItem onClick={handleMenuMyList}>Мои материалы</MenuItem>
+  //     <MenuItem onClick={handleMenuAddMaterial}>Добавить материал</MenuItem>
+  //   </Menu>
+  // );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -147,6 +148,12 @@ export default function PrimarySearchAppBar(props) {
           <AddIcon />
         </IconButton>
         <p>Добавить материал</p>
+      </MenuItem>
+      <MenuItem onClick={handleMenuMyList}>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <AddIcon />
+        </IconButton>
+        <p>Мои материалы</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -197,6 +204,11 @@ export default function PrimarySearchAppBar(props) {
                 onClick={handleMenuAddMaterial}
               />
             </IconButton>
+            <IconButton color="inherit">
+              <ListIcon
+                onClick={handleMenuMyList}
+              />
+            </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
                 <NotificationsIcon />
@@ -207,7 +219,7 @@ export default function PrimarySearchAppBar(props) {
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={handleMenuProfile}
               color="inherit"
             >
               <AccountCircle />
@@ -227,7 +239,7 @@ export default function PrimarySearchAppBar(props) {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/*{renderMenu}*/}
     </div>
   );
 }

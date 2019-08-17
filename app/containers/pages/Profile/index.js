@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import Header from './../../../components/header';
+import CardList from '../../../components/CardList';
+import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux';
+import { getAllMaterials } from '../../../actions/materials';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
-export default class Profile extends Component {
+import s from '../UserMaterials/styles.less';
+
+class Profile extends Component {
   componentDidMount() {
-    // Check user type user/admin
+    this.props.getAllMaterials();
   }
 
   render() {
     return <div>
       <Header history={this.props.history} />
+      <Typography variant="h6" className={s.title}>
+        Последние добавленные
+      </Typography>
+      <CardList showAuthor />
     </div>
   }
 }
+
+const withConnect = connect(() => ({
+}), {
+  getAllMaterials: getAllMaterials,
+});
+
+export default withRouter(compose(
+  withConnect,
+)(Profile));
+

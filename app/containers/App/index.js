@@ -15,18 +15,16 @@ import Profile from '../pages/Profile';
 import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
-import CardList from '../CardList/index';
+import UserMaterials from './../pages/UserMaterials';
 
 class App extends Component {
 
-  constructor({ fnIsMobileCheck }) {
+  constructor() {
     super();
 
     this.state = {
       load: false,
     };
-
-    fnIsMobileCheck();
   }
 
   render() {
@@ -40,7 +38,7 @@ class App extends Component {
         </Helmet>
         <Switch>
           <Route exact path="/login" component={Login} />
-          <Route exact path="/itemList" component={CardList} />
+          <Route exact path="/userMaterials" component={UserMaterials} />
           <Route exact path="/" component={LandingPage} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />

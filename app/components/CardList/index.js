@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
 import Card from "../Card";
 
 const CardList = ({ list }) => {
@@ -15,10 +14,6 @@ const CardList = ({ list }) => {
     list: {
       display: "flex",
       alignContent: "center"
-    },
-    title: {
-      textAlign: "center",
-      margin: theme.spacing(4, 0, 2)
     }
   }));
 
