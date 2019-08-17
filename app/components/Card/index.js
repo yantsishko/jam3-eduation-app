@@ -10,7 +10,7 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { withRouter } from "react-router-dom";
 import st from "./style.less";
 
-const ItemCard = ({ title, text, status, tag, id, history }) => {
+const ItemCard = ({ title, text, author, status, tag, id, history, showAuthor }) => {
   const useStyles = makeStyles({
     card: {
       width: "100%",
@@ -35,10 +35,18 @@ const ItemCard = ({ title, text, status, tag, id, history }) => {
             <Typography gutterBottom variant="h5" component="h2">
               {title}
             </Typography>
-
-            <Typography variant="body1" color="textSecondary" component="p">
-              Tag: {tag}
-            </Typography>
+            <div>
+              {
+                showAuthor && (
+                  <Typography variant="body1" color="textSecondary" component="p">
+                    Author: {author}
+                  </Typography>
+                )
+              }
+              <Typography variant="body1" color="textSecondary" component="p">
+                Tag: {tag}
+              </Typography>
+            </div>
           </div>
 
           <Typography variant="body2" color="textSecondary" component="p">
