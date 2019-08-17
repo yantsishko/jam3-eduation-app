@@ -1,2 +1,3 @@
 export const USER_GET = 'USER_GET';
-export const USER_IS_MOBILE_CHECK = 'USER_IS_MOBILE_CHECK';
+export const GET_ALL_MATERIALS = 'GET_ALL_MATERIALS';
+export const ADD_NEW_MATERIAL = 'ADD_NEW_MATERIAL';

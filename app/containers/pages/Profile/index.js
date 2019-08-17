@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import Header from './../../../components/header';
 import CardList from '../../../components/CardList';
 import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux';
+import { getAllMaterials } from '../../../actions/materials';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+
 import s from '../UserMaterials/styles.less';
 
-export default class Profile extends Component {
+class Profile extends Component {
   componentDidMount() {
-    // Check user type user/admin
+    this.props.getAllMaterials();
   }
 
   render() {
@@ -19,3 +24,13 @@ export default class Profile extends Component {
     </div>
   }
 }
+
+const withConnect = connect(() => ({
+}), {
+  getAllMaterials: getAllMaterials,
+});
+
+export default withRouter(compose(
+  withConnect,
+)(Profile));
+

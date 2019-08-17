@@ -6,6 +6,7 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import reducerUser from './reducers/user';
+import reducerMaterials from './reducers/materials';
 
 /*
  * routeReducer
@@ -42,6 +43,7 @@ function routeReducer(state = routeInitialState, action) {
 export default function createReducer(injectedReducers) {
   const appReducer = combineReducers({
     user: reducerUser,
+    materials: reducerMaterials,
     ...injectedReducers,
   });
 // eslint-disable-next-line arrow-body-style

@@ -19,14 +19,12 @@ import UserMaterials from './../pages/UserMaterials';
 
 class App extends Component {
 
-  constructor({ fnIsMobileCheck }) {
+  constructor() {
     super();
 
     this.state = {
       load: false,
     };
-
-    fnIsMobileCheck();
   }
 
   render() {
