@@ -20,12 +20,13 @@ class Profile extends Component {
       <Typography variant="h6" className={s.title}>
         Последние добавленные
       </Typography>
-      <CardList showAuthor />
+      <CardList showAuthor list={this.props.materials.list} />
     </div>
   }
 }
 
-const withConnect = connect(() => ({
+const withConnect = connect((state) => ({
+  materials: state.get('materials'),
 }), {
   getAllMaterials: getAllMaterials,
 });
