@@ -55,7 +55,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/userMaterials" component={UserMaterials} />
           <Route exact path="/materials/:id" component={MaterialInfo} />
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={Profile} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />
           <Route path="/addMaterial" component={AddMaterial} />
