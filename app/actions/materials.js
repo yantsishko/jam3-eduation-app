@@ -69,7 +69,7 @@ dispatch({
   data: id,
 }))
 
-export async function getTags() {
+export function getTags() {
   // post to save data
   return async (dispatch) => {
     let tags = await (await fetch('https://ejam3.acarica.com/api/tag/all')).json();
