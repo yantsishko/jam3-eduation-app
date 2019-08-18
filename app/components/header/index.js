@@ -104,11 +104,11 @@ function PrimarySearchAppBar(props) {
   }
 
   function handleMenuProfile() {
-    props.history.push('/profile');
+    props.history.push('/userMaterials');
   }
 
   function handleMenuMyList() {
-    props.history.push('/userMaterials');
+    props.history.push('/all');
   }
 
   function handleMenuAddMaterial() {

@@ -77,7 +77,7 @@ class App extends Component {
           <Route exact path="/authorMaterials/:id" component={AuthorMaterials} />
           <Route exact path="/" component={Profile} />
           <Route path="/settings/" component={SettingsLayout} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/all" component={Profile} />
           <Route path="/addMaterial" component={AddMaterial} />
           <Route component={NotFoundPage} />
         </Switch>

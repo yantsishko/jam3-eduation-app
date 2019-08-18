@@ -105,6 +105,12 @@ const MaterialInfo = ({ match, list, history }) => {
         </Typography>
 
         <div id="description-info" />
+        <div>
+          <ThumbUpIcon
+            onClick={like}
+            className={st.like}
+          />
+        </div>
       </div>
       <Comments />
       <ToastContainer />
