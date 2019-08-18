@@ -17,7 +17,7 @@ const CardList = ({ list, showAuthor }) => {
       alignItems: "center"
     }
   }));
-console.log(list)
+
   const classes = useStyles();
 
   return (

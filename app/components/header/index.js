@@ -151,7 +151,7 @@ export default function PrimarySearchAppBar(props) {
       </MenuItem>
       <MenuItem onClick={handleMenuMyList}>
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <AddIcon />
+          <ListIcon />
         </IconButton>
         <p>Мои материалы</p>
       </MenuItem>

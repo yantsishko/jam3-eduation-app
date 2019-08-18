@@ -51,10 +51,6 @@ export function addNewMaterial(data) {
         'Content-Type': 'application/json'
       }
     })).json();
-    dispatch({
-      type: ADD_NEW_MATERIAL,
-      data: list,
-    });
   };
 }
 

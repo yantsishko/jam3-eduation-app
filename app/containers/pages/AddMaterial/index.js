@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Quill from 'quill';
 import TextField from '@material-ui/core/TextField';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Header from '../../../components/header';
 import TagsSelector from '../../../components/TagsSelector';
 import FormControl from '@material-ui/core/FormControl';
@@ -30,7 +33,6 @@ class AddMaterial extends Component {
   };
 
   componentDidMount() {
-    console.log('2222');
     this.props.getTags();
     this.quill = new Quill(document.getElementById('editor'), {
       modules: {
@@ -51,19 +53,19 @@ class AddMaterial extends Component {
     const container = document.getElementById('editor');
     const customHtml = container.querySelector('.ql-editor').innerHTML;
 
-    console.log({
-      title: this.state.title,
-      description: customHtml,
-      difficulty: this.state.difficulty,
-      topic: this.state.topic,
-    });
-
     await this.props.addNewMaterial({
       title: this.state.title,
       description: customHtml,
       difficulty: 'INTERMEDIATE',
       tags: this.state.topic,
     });
+
+    toast.success("Материал сохранен", {
+      autoClose: false,
+    });
+    setTimeout(() => {
+      this.props.history.push('/userMaterials');
+    }, 2000);
   };
 
   handleChangeSelect = (event) => {
@@ -139,6 +141,7 @@ class AddMaterial extends Component {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     )
   }
