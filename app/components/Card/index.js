@@ -25,7 +25,7 @@ const ItemCard = ({
   const useStyles = makeStyles({
     card: {
       width: "100%",
-      maxWidth: "500px",
+      maxWidth: "860px",
       margin: "5px 0",
       display: "inline-block"
     },
