@@ -44,10 +44,10 @@ const ItemCard = ({
   const classes = useStyles();
 
   const openCard = (e) => {
-    if (e.target.localName === 'div') {
-      history.push(`/materials/${id}`);
-    } else {
+    if (e.target.localName === 'a') {
       history.push(`/authorMaterials/${author.id}`);
+    } else {
+      history.push(`/materials/${id}`);
     }
   };
 
