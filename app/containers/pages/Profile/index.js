@@ -18,7 +18,8 @@ import s from "../UserMaterials/styles.less";
 class Profile extends Component {
   state = {
     tags: [],
-    selectTags: []
+    selectTags: [],
+    newList:[],
   };
 
   componentDidMount() {
@@ -31,23 +32,30 @@ class Profile extends Component {
       .then(data => data.json())
       .then(tags => this.setState({ tags }))
       .catch(console.log);
+
+      this.getList([])
   }
 
-  getList = () => {
-    let newList = [];
+ 
+  changeTag = ({ target }) => {
+    this.setState({selectTags: target.value})
+    this.getList(target.value);
+  };
 
-    if (this.state.selectTags.length === 0) {
-      return this.props.materials.list;
-    }
-
-    this.props.materials.list.forEach(value => {
-      this.state.selectTags.forEach(tag => {
-        value.topic.forEach(topic => {
-          if (tag === topic) newList.push(value);
-        });
-      });
+  getList = tagList => {
+    let key = "";
+    tagList.map((tag, index, mas) => {
+      if (index !== mas.length - 1) key += tag + ",";
+      else key += tag;
     });
-    return newList;
+
+    fetch("https://ejam3.acarica.com/api/task/all?tags=" + key, {
+      method: "GET",
+      credentials: "include"
+    })
+      .then(data => data.json())
+      .then(mas => this.setState({ newList: mas }))
+      .catch(console.log);
   };
 
   render() {
@@ -64,9 +72,7 @@ class Profile extends Component {
             <Select
               multiple
               value={this.state.selectTags}
-              onChange={({ target }) =>
-                this.setState({ selectTags: target.value })
-              }
+              onChange={this.changeTag}
               input={<Input id="select-multiple-chip" />}
               renderValue={selected => (
                 <div className={s.chips}>
@@ -86,7 +92,7 @@ class Profile extends Component {
           </FormControl>
         </div>
 
-        <CardList showAuthor list= {this.getList()}/>
+        <CardList showAuthor list= {this.state.newList}/>
       </div>
     );
   }
