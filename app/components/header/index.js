@@ -186,15 +186,11 @@ export default function PrimarySearchAppBar(props) {
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
-              <AddIcon
-                onClick={handleMenuAddMaterial}
-              />
+            <IconButton color="inherit" onClick={handleMenuAddMaterial}>
+              <AddIcon />
             </IconButton>
-            <IconButton color="inherit">
-              <ListIcon
-                onClick={handleMenuMyList}
-              />
+            <IconButton color="inherit" onClick={handleMenuMyList}>
+              <ListIcon />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={17} color="secondary">
