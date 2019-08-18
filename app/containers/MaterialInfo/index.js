@@ -16,14 +16,16 @@ import Comments from '../../components/comments';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const MaterialInfo = ({ match, list, history, voteMaterial }) => {
-  let ref = {};
+const MaterialInfo = ({ match, list, history }) => {
+  const color = ['#6A48D7','#476DD5', '#6D89D5', '#5FC0CE'];
   const [state, setState] = useState({
     info: {
       title: "",
       text: "",
       date: "",
-      showAuthor: false
+      showAuthor: false,
+      createdAt: "",
+      topic:[],
     }
   });
 
@@ -43,24 +45,51 @@ const MaterialInfo = ({ match, list, history, voteMaterial }) => {
       .then(data => data.json())
       .then(info => {
         setState({ info });
-        document.getElementById('description-info').innerHTML = info.description;
+        document.getElementById("description-info").innerHTML =
+          info.description;
       })
       .catch(console.log);
+  }, []);
 
-    }, []);
-
-    return (
+  return (
     <div>
       <Header history={history} />
 
-      <div className={st.container}>
-          <div className={st.author}>
-            <FaceIcon />
-            <Typography variant="h2" color="textSecondary" component="h2">
-              {state.info.author ? state.info.author.name : ''}
-            </Typography>
-          </div>
+      <div style={{padding: '0 40px'}}>
+      {state.info.topic.map((tag, index)=>(<spam className={st.tag} style={{backgroundColor: color[index]}}>{tag}</spam>))}
+      </div>
 
+      <div className={st.container}>
+        <div className={st.author}>
+          <FaceIcon />
+          <Typography
+            variant="h2"
+            color="textSecondary"
+            component="h2"
+            className={st.name}
+          >
+            {state.info.author ? state.info.author.name : ""}
+          </Typography>
+        </div>
+        <div className={st.timeLine}>
+          <div className={st.date}>{state.info.createdAt.split("T")[0]}</div>
+          <div>
+            <div className={st.status}>
+              {state.info.status === "APPROVED" && (
+                <div>
+                  <p style={{margin: '0'}}>Опубликовано</p>
+                  <CheckCircleOutlineIcon style={{ color: "#34D800" }} />
+                </div>
+              )}
+              {state.info.status === "NEW" && (
+                <div>
+                  <p  style={{margin: '0'}}>Не опубликовано</p>
+                  <ErrorOutlineIcon style={{ color: "#FFFD40" }} />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
 
         <Typography
           variant="h3"
@@ -75,28 +104,7 @@ const MaterialInfo = ({ match, list, history, voteMaterial }) => {
           {state.info.date}
         </Typography>
 
-        <div id='description-info' />
-
-        <div className={st.status}>
-          {state.info.status && (
-            <div>
-              Publick
-              <CheckCircleOutlineIcon style={{ color: "#34D800" }} />
-            </div>
-          )}
-          {!state.info.status && (
-            <div>
-              Disabled
-              <ErrorOutlineIcon style={{ color: "#FFFD40" }} />
-            </div>
-          )}
-        </div>
-        <div>
-          <ThumbUpIcon
-            onClick={like}
-            className={st.like}
-          />
-        </div>
+        <div id="description-info" />
       </div>
       <Comments />
       <ToastContainer />
