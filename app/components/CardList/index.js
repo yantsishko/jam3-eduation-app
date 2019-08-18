@@ -12,10 +12,12 @@ const CardList = ({ list, showAuthor }) => {
     },
     list: {
       display: "flex",
-      justifyContent: 'center'
+      justifyContent: "center",
+      flexDirection: "column",
+      alignItems: "center"
     }
   }));
-
+console.log(list)
   const classes = useStyles();
 
   return (
@@ -23,9 +25,22 @@ const CardList = ({ list, showAuthor }) => {
       <div className={classes.list}>
         <div className={classes.demo}>
           <List className={classes.list}>
-            {list.map(({ title, tag, text, status, id, author }) => (
-              <Card key={id} id={id} title={title} tag={tag} text={text} status={status} author={author} showAuthor={showAuthor}/>
-            ))}
+            {list.map(
+              ({ title, topic, status, id, description, author, rating, difficulty }) => (
+                <Card
+                  key={id}
+                  id={id}
+                  title={title}
+                  description={description}
+                  topic={topic}
+                  status={status}
+                  author={author}
+                  showAuthor={showAuthor}
+                  difficulty={difficulty}
+                  rating={rating}
+                />
+              )
+            )}
           </List>
         </div>
       </div>
@@ -34,7 +49,7 @@ const CardList = ({ list, showAuthor }) => {
 };
 
 CardList.defaultProps = {
-  list: [],
+  list: []
 };
 
 export default CardList;
