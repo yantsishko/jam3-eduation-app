@@ -13,33 +13,43 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import st from "./style.less";
 
 const MaterialInfo = ({ match, list, history }) => {
+  let ref = {};
   const [state, setState] = useState({
     info: {
       title: "",
       text: "",
-      date: ""
+      date: "",
+      showAuthor: false
     }
   });
 
   useEffect(() => {
     const id = match.params.id;
-    const material = list.findIndex(material => material.id === id);
-    setState({ info: list[material] });
-  }, []);
+    fetch(`https://ejam3.acarica.com/api/task/${id}`, {
+      method: "GET",
+      credentials: "include"
+    })
+      .then(data => data.json())
+      .then(info => {
+        setState({ info });
+        document.getElementById('description-info').innerHTML = info.description;
+      })
+      .catch(console.log);
 
-  return (
+    }, []);
+  
+    return (
     <div>
       <Header history={history} />
 
       <div className={st.container}>
-        {state.info.showAuthor && (
           <div className={st.author}>
             <FaceIcon />
             <Typography variant="h2" color="textSecondary" component="h2">
-              {state.info.author}
+              {state.info.author ? state.info.author.name : ''}
             </Typography>
           </div>
-        )}
+
 
         <Typography
           variant="h3"
@@ -54,9 +64,7 @@ const MaterialInfo = ({ match, list, history }) => {
           {state.info.date}
         </Typography>
 
-        <Typography variant="body2" color="textSecondary" component="p">
-          {state.info.text}
-        </Typography>
+        <div id='description-info' />
 
         <div className={st.status}>
           {state.info.status && (

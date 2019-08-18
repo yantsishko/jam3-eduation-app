@@ -37,7 +37,7 @@ class App extends Component {
         credentials: 'include',
       })).json();
     }
-    console.log('1111');
+    
     this.setState({
       loaded: true,
     });
