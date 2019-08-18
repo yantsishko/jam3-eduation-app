@@ -4,8 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import st from "./style.less";
 
@@ -21,11 +20,19 @@ const ItemCard = ({
   rating,
   id
 }) => {
+  const difficultyMap = {
+    ELEMENTARY: 'Элементарный',
+    INTERMEDIATE: 'Средний',
+    ADVANCED: 'Повышенный',
+    PROFICIENT: 'Профессионал',
+    UNBELIEVABLE: 'Эксперт',
+  };
+
   let ref = {};
   const useStyles = makeStyles({
     card: {
       width: "100%",
-      maxWidth: "500px",
+      maxWidth: "860px",
       margin: "5px 0",
       display: "inline-block"
     },
@@ -36,8 +43,12 @@ const ItemCard = ({
 
   const classes = useStyles();
 
-  const openCard = () => {
-    history.push(`/materials/${id}`);
+  const openCard = (e) => {
+    if (e.target.localName === 'div') {
+      history.push(`/materials/${id}`);
+    } else {
+      history.push(`/authorMaterials/${author.id}`);
+    }
   };
 
   useEffect(()=>{
@@ -58,7 +69,7 @@ const ItemCard = ({
                 ))}
               </div>
             )}
-            <div className={st.difficulty}>{difficulty}</div>
+            <div className={st.difficulty}>{difficultyMap[difficulty]}</div>
           </div>
 
           <Typography gutterBottom variant="h5" component="h2">
@@ -82,7 +93,7 @@ const ItemCard = ({
           <div>
             {showAuthor && (
               <Typography variant="body1" color="textSecondary" component="p">
-                Author: {author.name}
+                Автор: <Link to={`/authorMaterials/${author.id}`}>{author.name}</Link>
               </Typography>
             )}
           </div>

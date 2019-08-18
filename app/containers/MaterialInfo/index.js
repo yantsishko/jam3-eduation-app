@@ -3,14 +3,18 @@ import Typography from "@material-ui/core/Typography";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getMaterialById } from "../../actions/materials";
+import { getMaterialById, voteMaterial } from "../../actions/materials";
 import Header from "../../components/header";
 import FaceIcon from "@material-ui/icons/Face";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import st from "./style.less";
+import Comments from '../../components/comments';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MaterialInfo = ({ match, list, history }) => {
   const color = ['#6A48D7','#476DD5', '#6D89D5', '#5FC0CE'];
@@ -24,6 +28,13 @@ const MaterialInfo = ({ match, list, history }) => {
       topic:[],
     }
   });
+
+  const like = async () => {
+    await voteMaterial(match.params.id);
+    toast.success("Ваше одобрение принято", {
+      autoClose: false,
+    });
+  };
 
   useEffect(() => {
     const id = match.params.id;
@@ -95,6 +106,8 @@ const MaterialInfo = ({ match, list, history }) => {
 
         <div id="description-info" />
       </div>
+      <Comments />
+      <ToastContainer />
     </div>
   );
 };
@@ -105,7 +118,8 @@ export default withRouter(
       list: stage.get("materials").cardList
     }),
     {
-      getMaterialById
+      getMaterialById,
+      voteMaterial,
     }
   )(MaterialInfo)
 );

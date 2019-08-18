@@ -14,6 +14,10 @@ import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {connect} from 'react-redux';
+import {addNotyficationCounter} from '../../actions/materials';
+import {withRouter} from 'react-router-dom';
+import {compose} from 'redux';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -78,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -151,7 +155,7 @@ export default function PrimarySearchAppBar(props) {
       </MenuItem>
       <MenuItem onClick={handleMenuMyList}>
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <AddIcon />
+          <ListIcon />
         </IconButton>
         <p>Мои материалы</p>
       </MenuItem>
@@ -184,33 +188,16 @@ export default function PrimarySearchAppBar(props) {
           <Typography className={classes.title} variant="h6" noWrap>
             Агрегатор
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Поиск…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton color="inherit">
-              <AddIcon
-                onClick={handleMenuAddMaterial}
-              />
+            <IconButton color="inherit" onClick={handleMenuAddMaterial}>
+              <AddIcon />
             </IconButton>
-            <IconButton color="inherit">
-              <ListIcon
-                onClick={handleMenuMyList}
-              />
+            <IconButton color="inherit" onClick={handleMenuMyList}>
+              <ListIcon />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={props.materials.counter} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -243,3 +230,12 @@ export default function PrimarySearchAppBar(props) {
     </div>
   );
 }
+
+const withConnect = connect((state) => ({
+  materials: state.get('materials')
+}), {
+});
+
+export default withRouter(compose(
+  withConnect,
+)(PrimarySearchAppBar));

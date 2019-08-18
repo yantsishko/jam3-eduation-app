@@ -9,13 +9,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Input from "@material-ui/core/Input";
 import Chip from "@material-ui/core/Chip";
 import { connect } from "react-redux";
-import { getAllMaterials } from "../../../actions/materials";
+import { getAllMaterials, getAuthorMaterials } from "../../../actions/materials";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 
 import s from "../UserMaterials/styles.less";
 
-class Profile extends Component {
+class AuthorMaterials extends Component {
   state = {
     tags: [],
     selectTags: [],
@@ -23,7 +23,7 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    this.props.getAllMaterials();
+    this.props.getAuthorMaterials(this.props.match.params.id);
 
     fetch("https://ejam3.acarica.com/api/tag/all", {
       method: "GET",
@@ -35,12 +35,6 @@ class Profile extends Component {
 
       this.getList([])
   }
-
-
-  changeTag = ({ target }) => {
-    this.setState({selectTags: target.value})
-    this.getList(target.value);
-  };
 
   getList = tagList => {
     let key = "";
@@ -63,36 +57,10 @@ class Profile extends Component {
       <div>
         <Header history={this.props.history} />
         <Typography variant="h6" className={s.title}>
-          Последние добавленные
+          Материалы автора {!!this.props.materials.list.length && this.props.materials.list[0].author.name}
         </Typography>
 
-        <div className={s.filter}>
-          <FormControl className={s.formControl}>
-            <InputLabel htmlFor="select-multiple-chip">Фильтр</InputLabel>
-            <Select
-              multiple
-              value={this.state.selectTags}
-              onChange={this.changeTag}
-              input={<Input id="select-multiple-chip" />}
-              renderValue={selected => (
-                <div className={s.chips}>
-                  {selected.map(value => (
-                    <Chip key={value} label={value} className={s.chip} />
-                  ))}
-                </div>
-              )}
-              MenuProps={{}}
-            >
-              {this.state.tags.map(name => (
-                <MenuItem key={name} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-
-        <CardList showAuthor list= {this.state.newList}/>
+        <CardList showAuthor list= {this.props.materials.list}/>
       </div>
     );
   }
@@ -103,8 +71,9 @@ const withConnect = connect(
     materials: state.get("materials")
   }),
   {
-    getAllMaterials: getAllMaterials
+    getAllMaterials: getAllMaterials,
+    getAuthorMaterials,
   }
 );
 
-export default withRouter(compose(withConnect)(Profile));
+export default withRouter(compose(withConnect)(AuthorMaterials));

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Login from '../Login/index'
 import LandingPage from '../LandingPage/LandingPage';
@@ -12,7 +13,10 @@ import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
 import UserMaterials from './../pages/UserMaterials';
+import AuthorMaterials from './../pages/AuthorMaterials';
 import MaterialInfo from '../MaterialInfo'
+
+import { addNotyficationCounter } from './../../actions/materials';
 
 class App extends Component {
 
@@ -37,10 +41,24 @@ class App extends Component {
         credentials: 'include',
       })).json();
     }
-    
+
     this.setState({
       loaded: true,
     });
+
+    setTimeout(() => {
+      this.props.addNotyficationCounter();
+      toast.warn("Тишко Ян добавил новый материал", {
+        autoClose: 3000,
+      });
+    }, 10000);
+
+    setTimeout(() => {
+      this.props.addNotyficationCounter();
+      toast.warn("Ваш материал Теория Дарвина опубликован", {
+        autoClose: 3000,
+      });
+    }, 30000);
   }
 
   render() {
@@ -56,12 +74,14 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/userMaterials" component={UserMaterials} />
           <Route exact path="/materials/:id" component={MaterialInfo} />
+          <Route exact path="/authorMaterials/:id" component={AuthorMaterials} />
           <Route exact path="/" component={Profile} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />
           <Route path="/addMaterial" component={AddMaterial} />
           <Route component={NotFoundPage} />
         </Switch>
+        <ToastContainer />
       </div>
     );
   }
@@ -72,6 +92,7 @@ App.propTypes = {
 
 const withConnect = connect(() => ({
 }), {
+  addNotyficationCounter,
 });
 
 export default withRouter(compose(
