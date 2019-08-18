@@ -2,7 +2,7 @@ import {
   GET_ALL_MATERIALS,
   GET_USER_LIST,
   GET_MATERIAL_BY_ID,
-  GET_TAGS,
+  GET_TAGS, ADD_COUNTER,
 } from '../constants';
 
 const initialState = {
@@ -17,6 +17,7 @@ const initialState = {
     showAuthor: false,
   }],
   tags: [],
+  counter: 0,
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +41,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         material: action.data
+      }
+    case ADD_COUNTER:
+      return {
+        ...state,
+        counter: state.counter + 1,
       }
     default:
       return state;

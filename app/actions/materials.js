@@ -1,4 +1,4 @@
-import { GET_ALL_MATERIALS, ADD_NEW_MATERIAL, GET_USER_LIST, GET_MATERIAL_BY_ID, GET_TAGS } from '../constants';
+import { GET_ALL_MATERIALS, ADD_COUNTER, GET_USER_LIST, GET_MATERIAL_BY_ID, GET_TAGS } from '../constants';
 
 export function getAllMaterials() {
   const list = [
@@ -92,5 +92,13 @@ export function voteMaterial(taskId) {
         'Content-Type': 'application/json'
       }
     })).json();
+  }
+}
+
+export function addNotyficationCounter() {
+  return async (dispatch) => {
+    dispatch({
+      type: ADD_COUNTER,
+    });
   }
 }

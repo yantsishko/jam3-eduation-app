@@ -14,6 +14,10 @@ import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {connect} from 'react-redux';
+import {addNotyficationCounter} from '../../actions/materials';
+import {withRouter} from 'react-router-dom';
+import {compose} from 'redux';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -78,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+function PrimarySearchAppBar(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -193,7 +197,7 @@ export default function PrimarySearchAppBar(props) {
               <ListIcon />
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
+              <Badge badgeContent={props.materials.counter} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
@@ -226,3 +230,12 @@ export default function PrimarySearchAppBar(props) {
     </div>
   );
 }
+
+const withConnect = connect((state) => ({
+  materials: state.get('materials')
+}), {
+});
+
+export default withRouter(compose(
+  withConnect,
+)(PrimarySearchAppBar));
