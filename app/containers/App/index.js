@@ -13,6 +13,7 @@ import AddMaterial from '../pages/AddMaterial';
 import SettingsLayout from '../Settings/SettingsLayout/SettingsLayout';
 import NotFoundPage from './../NotFoundPage/NotFoundPage';
 import UserMaterials from './../pages/UserMaterials';
+import AuthorMaterials from './../pages/AuthorMaterials';
 import MaterialInfo from '../MaterialInfo'
 
 import { addNotyficationCounter } from './../../actions/materials';
@@ -73,6 +74,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/userMaterials" component={UserMaterials} />
           <Route exact path="/materials/:id" component={MaterialInfo} />
+          <Route exact path="/authorMaterials/:id" component={AuthorMaterials} />
           <Route exact path="/" component={Profile} />
           <Route path="/settings/" component={SettingsLayout} />
           <Route path="/profile" component={Profile} />

@@ -4,8 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import st from "./style.less";
 
@@ -44,8 +43,12 @@ const ItemCard = ({
 
   const classes = useStyles();
 
-  const openCard = () => {
-    history.push(`/materials/${id}`);
+  const openCard = (e) => {
+    if (e.target.localName === 'div') {
+      history.push(`/materials/${id}`);
+    } else {
+      history.push(`/authorMaterials/${author.id}`);
+    }
   };
 
   useEffect(()=>{
@@ -90,7 +93,7 @@ const ItemCard = ({
           <div>
             {showAuthor && (
               <Typography variant="body1" color="textSecondary" component="p">
-                Автор: {author.name}
+                Автор: <Link to={`/authorMaterials/${author.id}`}>{author.name}</Link>
               </Typography>
             )}
           </div>
