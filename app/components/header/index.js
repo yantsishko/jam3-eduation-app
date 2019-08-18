@@ -157,7 +157,7 @@ function PrimarySearchAppBar(props) {
         <IconButton aria-label="show 4 new mails" color="inherit">
           <ListIcon />
         </IconButton>
-        <p>Мои материалы</p>
+        <p>Все материалы</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
@@ -176,7 +176,7 @@ function PrimarySearchAppBar(props) {
         >
           <AccountCircle />
         </IconButton>
-        <p>Профиль</p>
+        <p>Мои материалы</p>
       </MenuItem>
     </Menu>
   );
