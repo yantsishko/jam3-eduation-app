@@ -36,7 +36,7 @@ class Profile extends Component {
       this.getList([])
   }
 
- 
+
   changeTag = ({ target }) => {
     this.setState({selectTags: target.value})
     this.getList(target.value);
@@ -68,7 +68,7 @@ class Profile extends Component {
 
         <div className={s.filter}>
           <FormControl className={s.formControl}>
-            <InputLabel htmlFor="select-multiple-chip">Tag</InputLabel>
+            <InputLabel htmlFor="select-multiple-chip">Фильтр</InputLabel>
             <Select
               multiple
               value={this.state.selectTags}

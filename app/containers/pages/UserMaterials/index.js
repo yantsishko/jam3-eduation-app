@@ -69,7 +69,7 @@ class Profile extends Component {
         </Typography>
         <div className={s.filter}>
           <FormControl className={s.formControl}>
-            <InputLabel htmlFor="select-multiple-chip">Tag</InputLabel>
+            <InputLabel htmlFor="select-multiple-chip">Фильтр</InputLabel>
             <Select
               multiple
               value={this.state.selectTags}

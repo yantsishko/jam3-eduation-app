@@ -3,16 +3,20 @@ import Typography from "@material-ui/core/Typography";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getMaterialById } from "../../actions/materials";
+import { getMaterialById, voteMaterial } from "../../actions/materials";
 import Header from "../../components/header";
 import FaceIcon from "@material-ui/icons/Face";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 
 import st from "./style.less";
+import Comments from '../../components/comments';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const MaterialInfo = ({ match, list, history }) => {
+const MaterialInfo = ({ match, list, history, voteMaterial }) => {
   let ref = {};
   const [state, setState] = useState({
     info: {
@@ -22,6 +26,13 @@ const MaterialInfo = ({ match, list, history }) => {
       showAuthor: false
     }
   });
+
+  const like = async () => {
+    await voteMaterial(match.params.id);
+    toast.success("Ваше одобрение принято", {
+      autoClose: false,
+    });
+  };
 
   useEffect(() => {
     const id = match.params.id;
@@ -37,7 +48,7 @@ const MaterialInfo = ({ match, list, history }) => {
       .catch(console.log);
 
     }, []);
-  
+
     return (
     <div>
       <Header history={history} />
@@ -80,7 +91,15 @@ const MaterialInfo = ({ match, list, history }) => {
             </div>
           )}
         </div>
+        <div>
+          <ThumbUpIcon
+            onClick={like}
+            className={st.like}
+          />
+        </div>
       </div>
+      <Comments />
+      <ToastContainer />
     </div>
   );
 };
@@ -91,7 +110,8 @@ export default withRouter(
       list: stage.get("materials").cardList
     }),
     {
-      getMaterialById
+      getMaterialById,
+      voteMaterial,
     }
   )(MaterialInfo)
 );
