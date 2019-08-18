@@ -4,6 +4,7 @@
   "background_color": "#fafafa",
   "display": "standalone",
   "Scope": "/",
+  "version": "2",
   "start_url": "/",
   "icons": [
     {

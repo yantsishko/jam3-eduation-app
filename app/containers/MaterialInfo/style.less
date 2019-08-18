@@ -7,12 +7,30 @@
   }
 
   .status {
-    text-align: end;
-    margin-top: 20px;
+    > div {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      align-self: center;
+    }
     svg {
       margin-left: 5px;
     }
   }
+}
+
+.tag {
+  padding: 4px; 
+  border-radius: 4px;
+  color: #fff;
+}
+
+.timeLine {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-self: center;
+  align-items: center;
 }
 
 .author {
@@ -23,7 +41,7 @@
 
   h2 {
     color: black;
-    font-size: 30px;
+    font-size: 23px;
     margin-left: 8px;
   }
 }
