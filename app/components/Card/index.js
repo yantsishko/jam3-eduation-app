@@ -6,6 +6,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import st from "./style.less";
 
 const ItemCard = ({
@@ -89,7 +90,13 @@ const ItemCard = ({
         {/* {status && <CheckCircleOutlineIcon style={{ color: "#34D800" }} />}
         {!status && <ErrorOutlineIcon style={{ color: "#FFFD40" }} />} */}
         <div className={st.cardFooter}>
-          <div>{rating && <span>Raiting: {rating}</span>}</div>
+          <div style={{
+            display: 'flex',
+            alignContent: 'center',
+            color: '#a9a9a9'
+          }}>
+            <ThumbUpIcon /> <span style={{marginLeft: '5px'}}>{rating || 0}</span>
+          </div>
           <div>
             {showAuthor && (
               <Typography variant="body1" color="textSecondary" component="p">
