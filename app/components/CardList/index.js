@@ -11,6 +11,7 @@ const CardList = ({ list, showAuthor }) => {
       margin: "auto"
     },
     list: {
+      padding: '0 10px',
       display: "flex",
       justifyContent: "center",
       flexDirection: "column",
