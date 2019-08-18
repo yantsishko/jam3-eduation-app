@@ -21,6 +21,14 @@ const ItemCard = ({
   rating,
   id
 }) => {
+  const difficultyMap = {
+    ELEMENTARY: 'Элементарный',
+    INTERMEDIATE: 'Средний',
+    ADVANCED: 'Повышенный',
+    PROFICIENT: 'Профессионал',
+    UNBELIEVABLE: 'Эксперт',
+  };
+
   let ref = {};
   const useStyles = makeStyles({
     card: {
@@ -58,7 +66,7 @@ const ItemCard = ({
                 ))}
               </div>
             )}
-            <div className={st.difficulty}>{difficulty}</div>
+            <div className={st.difficulty}>{difficultyMap[difficulty]}</div>
           </div>
 
           <Typography gutterBottom variant="h5" component="h2">
@@ -82,7 +90,7 @@ const ItemCard = ({
           <div>
             {showAuthor && (
               <Typography variant="body1" color="textSecondary" component="p">
-                Author: {author.name}
+                Автор: {author.name}
               </Typography>
             )}
           </div>
