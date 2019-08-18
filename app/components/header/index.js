@@ -4,20 +4,20 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddIcon from '@material-ui/icons/Add';
 import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import {connect} from 'react-redux';
-import {addNotyficationCounter} from '../../actions/materials';
+import { Link } from 'react-router-dom';
 import {withRouter} from 'react-router-dom';
 import {compose} from 'redux';
+
+import s from './style.less';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -186,7 +186,7 @@ function PrimarySearchAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Агрегатор
+            <Link to="/all" className={s.link}>Агрегатор</Link>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
