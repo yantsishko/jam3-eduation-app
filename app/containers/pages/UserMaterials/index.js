@@ -12,7 +12,7 @@ import { getUserList } from "../../../actions/materials";
 import { connect } from "react-redux";
 import s from "./styles.less";
 
-class Profile extends Component {
+class UserMaterials extends Component {
   state = {
     tags: [],
     selectTags: [],
@@ -36,7 +36,7 @@ class Profile extends Component {
       .then(tags => this.setState({ tags }))
       .catch(console.log);
 
-    this.getList([]);
+    // this.getList([]);
   }
 
   changeTag = ({ target }) => {
@@ -56,7 +56,7 @@ class Profile extends Component {
       credentials: "include"
     })
       .then(data => data.json())
-      .then(mas => this.setState({ newList: mas }))
+      .then(this.props.getUserList)
       .catch(console.log);
   };
 
@@ -92,7 +92,7 @@ class Profile extends Component {
             </Select>
           </FormControl>
         </div>
-        <CardList showAuthor={true} list={this.state.newList} />
+        <CardList showAuthor={true} list={this.props.list} />
       </div>
     );
   }
@@ -105,4 +105,4 @@ export default connect(
   {
     getUserList
   }
-)(Profile);
+)(UserMaterials);
