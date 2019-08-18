@@ -84,14 +84,13 @@ export function getTags() {
 
 export function voteMaterial(taskId) {
   return async () => {
-    await (await fetch('https://ejam3.acarica.com/api/task/upvote', {
+    await fetch(`https://ejam3.acarica.com/api/task/upvote/${taskId}`, {
       method: 'POST',
-      body: JSON.stringify({ taskId }),
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
       }
-    })).json();
+    });
   }
 }
 
