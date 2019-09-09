@@ -1,4 +1,4 @@
-# Beeline TVE Web repository
+# Jam3 repository
 
 # Requirements
 
